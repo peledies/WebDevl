@@ -1,0 +1,3 @@
+  ## NAME_FLAME ##
+  config.vm.define :EVIL_NAME do |EVIL_NAME|
+  end
