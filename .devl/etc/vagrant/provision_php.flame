@@ -1,0 +1,4 @@
+  ## PROVISION_PHP_FLAME ##
+  config.vm.provision "shell" do |s|
+    s.path = ".devl/etc/scripts/provision_php.sh"
+  end

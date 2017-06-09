@@ -1,0 +1,2 @@
+  ## PORT_3000_FLAME ##
+  config.vm.network :forwarded_port, host: EVIL_3000, guest: 3000

@@ -1,0 +1,6 @@
+  ## PROVISION_MYSQL_FLAME ##
+  config.vm.provision "shell" do |s|
+    s.path = ".devl/etc/scripts/provision_mysql.sh"
+    s.args = "EVIL_NAME EVIL_PASSWORD"
+  end
+  

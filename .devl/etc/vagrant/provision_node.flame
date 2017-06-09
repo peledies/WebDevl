@@ -1,0 +1,4 @@
+  ## PROVISON_NODE_FLAME ##
+  config.vm.provision "shell" do |s|
+    s.path = ".devl/etc/scripts/provision_node.sh"
+  end

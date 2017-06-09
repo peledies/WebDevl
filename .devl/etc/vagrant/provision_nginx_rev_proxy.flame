@@ -1,0 +1,5 @@
+  ## PROVISION_NGINX_REV_PROXY_FLAME ##
+  config.vm.provision "shell" do |s|
+    s.path = ".devl/etc/scripts/provision_nginx_rev_proxy.sh"
+    s.args = "EVIL_GUEST_DIR EVIL_NAME EVIL_PORT"
+  end

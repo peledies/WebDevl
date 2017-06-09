@@ -1,0 +1,2 @@
+  ## PORT_3306_FLAME ##
+  config.vm.network :forwarded_port, host: EVIL_3306, guest: 3306
