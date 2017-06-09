@@ -1,0 +1,5 @@
+  ## PROVISION_LARAVEL_FLAME ##
+  config.vm.provision "shell" do |s|
+    s.path = "./.devl/etc/scripts/provision_laravel.sh"
+    s.args ="EVIL_ROOT EVIL_DIR"
+  end

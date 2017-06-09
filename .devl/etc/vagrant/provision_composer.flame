@@ -1,0 +1,4 @@
+  ## PROVISION_COMPOSER_FLAME ##
+  config.vm.provision "shell" do |s|
+    s.path = ".devl/etc/scripts/provision_composer.sh"
+  end

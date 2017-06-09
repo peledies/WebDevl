@@ -1,0 +1,2 @@
+  ## MOUNT_FLAME ##
+  config.vm.synced_folder "EVIL_HOST", "EVIL_GUEST", owner: "www-data", group: "www-data", mount_options: ["dmode=777", "fmode=777"]

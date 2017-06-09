@@ -1,0 +1,5 @@
+  ## VIRTUALBOX_FLAME ##
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = EVIL_MEMORY
+    vb.cpus = EVIL_CPU
+  end

@@ -1,0 +1,5 @@
+  ## PROVISION_GIT_REMOTE_FLAME ##
+  config.vm.provision "shell" do |s|
+    s.path = ".devl/etc/scripts/provision_git_remote.sh"
+    s.args = "EVIL_NAME EVIL_DOMAIN EVIL_GUEST_DIR"
+  end
