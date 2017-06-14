@@ -1,8 +1,6 @@
 #!/bin/bash
 
-URL=${1:-"example.com"}
-WEBROOT=${2:-"/var/www/html"}
-ADMIN_EMAIL=${3:-"admin@example.com"}
+WEBSERVER=${1:-"apache"}
 
 vagrant_build_log=/home/ubuntu/vm_build.log
 
@@ -18,18 +16,7 @@ echo -e "\n--- Installing LetsEncrypt Certbot ---\n"
 sudo apt-get install software-properties-common -y >> $vagrant_build_log 2>&1
 sudo add-apt-repository ppa:certbot/certbot -y >> $vagrant_build_log 2>&1
 sudo apt-get update
-sudo apt-get install python-certbot-nginx -y >> $vagrant_build_log 2>&1
-
-echo -e "\n--- Generating SSL Cert for $URL ---\n"
-sudo certbot \
-  --nginx -n \
-  --agree-tos \
-  --redirect \
-  --keep-until-expiring \
-  -m $ADMIN_EMAIL \
-  -d $URL \
-  --renew-hook "/home/ubuntu/certbot_renewal_email.sh $EMAIL $URL" \
-  --webroot-path $WEBROOT >> $vagrant_build_log 2>&1
+sudo apt-get install python-certbot-$WEBSERVER -y >> $vagrant_build_log 2>&1
 
 if grep -Fxq "30 2 * * 1 /usr/bin/certbot renew --logs-dir /var/log/letsencrypt/" /var/spool/cron/crontabs/root
 then
@@ -45,13 +32,12 @@ else
   rm ohmycron
 fi
 
-
 echo -e "\n--- Creating Renewal Email Script ---\n"
 
 cat <<EOF > /home/ubuntu/certbot_renewal_email.sh
 #!/bin/bash
 
-EMAIL=\${1:-"deac@sfp.net"}
+EMAIL=\${1:-"example@example.org"}
 DOMAIN=\${2:-"Domain Not Specified"}
 
 mail -s "Certbot Certificate Renewal" -t \$EMAIL <<< \$DOMAIN
