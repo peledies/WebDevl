@@ -26,18 +26,20 @@ parse_flame() {
   vagrant=$(cat $SCRIPTPATH/../vagrant/vagrant.evil)
   flame=$(cat $SCRIPTPATH/../vagrant/provision_$1.flame)
   ember="EVIL_PROVISION_$1"
+  echo "$flame"
   grep -o '\bEVIL_\w*' $SCRIPTPATH/../vagrant/provision_$1.flame | 
   {
     while read line ; do
       read -p "${cyan} Enter Value for ${line}: ${gold}" NICE </dev/tty
-      flame=$(sed "s/${line}/${NICE}/" <<< $flame)
+      flame=$(sed "s~${line}~${NICE}~g" <<< $flame)
+      echo "$flame"
     done
-    vagrant=$(sed 's~EVIL_PROVISION_APACHE~"'"${flame}"'"~g' <<< $vagrant)
-    wtf="sed 's~${ember}~${flame}~g'"
-    echo $wtf
-    echo $ember
-    echo $vagrant
-    echo -e $vagrant > $SCRIPTPATH/../../../Vagrantfile.tst
+    vagrant=$(sed 's~EVIL_PROVISION_APACHE~"'"${flame}"'"~g' <<< "$vagrant")
+    #wtf="sed 's~${ember}~${flame}~g'"
+    #echo $wtf
+    #echo $ember
+    echo "$vagrant"
+    echo -e "$vagrant" > $SCRIPTPATH/../../../Vagrantfile.tst
   }
 
 }
