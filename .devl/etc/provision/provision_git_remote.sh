@@ -36,15 +36,15 @@ echo -e "\n--- Creating post-receive hooks for git repository ---\n"
 cat <<EOF > /git/$SHORTNAME.git/hooks/post-receive
 #!/bin/bash
 
-echo "---" \$(date) "---" >> /tmp/$SHORTNAME-git-pull.log
-unset GIT_DIR 2>> /tmp/$SHORTNAME-git-pull.log
+echo "---" \$(date) "---" >> /tmp/${SHORTNAME}-git-pull.log
+unset GIT_DIR 2>> /tmp/${SHORTNAME}-git-pull.log
 
-cd $SOURCE
-git fetch --all 2>> /tmp/$SHORTNAME-git-pull.log
+cd ${SOURCE}
+git fetch --all 2>> /tmp/${SHORTNAME}-git-pull.log
 
-git checkout -f dev 2>> /tmp/$SHORTNAME-git-pull.log
+git checkout -f dev 2>> /tmp/${SHORTNAME}-git-pull.log
 
-git reset --hard origin/dev 2>> /tmp/$SHORTNAME-git-pull.log
+git reset --hard origin/dev 2>> /tmp/${SHORTNAME}-git-pull.log
 EOF
 
 echo -e "\n--- Making post-receive hook executable ---\n"

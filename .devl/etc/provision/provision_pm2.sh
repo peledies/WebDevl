@@ -33,11 +33,11 @@ module.exports = {
 
     // First application
     {
-      name      : '$NAME',
-      script    : '$SOURCE/$ENTRY',
+      name      : '${NAME}',
+      script    : '${SOURCE}/${ENTRY}',
       env: {
-        DB_CONFIG : '$CONFIG',
-        NODE_ENV: '$ENV'
+        DB_CONFIG : '${CONFIG}',
+        NODE_ENV: '${ENV}'
       },
       env_production : {
         NODE_ENV: 'production'
