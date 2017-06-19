@@ -61,6 +61,11 @@ echo -e "\n--- Removing default web server directory from apache2.conf ---\n"
 echo -e "\n--- Removing /usr/share web server directory from apache2.conf ---\n"
   sed -i '/^<Directory[ ]\/usr\/share\/>/,/<\/Directory>/d' /etc/apache2/apache2.conf >> $vagrant_build_log 2>&1
 
-## Restart apache
-echo -e "\n--- Restart Apache --\n"
-  service apache2 restart >> $vagrant_build_log 2>&1
+if ! pidof apache2 > /dev/null
+then
+  echo -e "\n--- Starting Apache --\n"
+    service apache2 start >> $vagrant_build_log 2>&1
+else
+  echo -e "\n--- Restart Apache --\n"
+    service apache2 restart >> $vagrant_build_log 2>&1
+fi
