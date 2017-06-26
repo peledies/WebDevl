@@ -25,10 +25,6 @@ echo -e "\n--- Enabling Apache module [php7.0] ---\n"
 echo -e "\n--- Enabling Apache module [mpm_prefork] ---\n"
   a2enmod mpm_prefork >> $vagrant_build_log 2>&1
 
-## Disable apache modules
-echo -e "\n--- Disabling Apache module [mpm_event] ---\n"
-  a2dismod mpm_event >> $vagrant_build_log 2>&1
-
 
 ## Create virtual host file for project
 echo -e "\n--- Creating Virualhost file for $NAME ---\n"
